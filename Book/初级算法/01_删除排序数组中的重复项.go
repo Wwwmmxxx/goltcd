@@ -44,5 +44,19 @@ package main
 
 func removeDuplicates(nums []int) int {
 
-	return 0
+	var (
+		currentElement *int
+		pointerIndex   = 0
+	)
+
+	for i := 0; i < len(nums); i++ {
+		if currentElement == nil || nums[i] != *currentElement {
+			currentElement = &nums[i]
+			nums[pointerIndex] = *currentElement
+			pointerIndex++
+			continue
+		}
+	}
+
+	return pointerIndex
 }
