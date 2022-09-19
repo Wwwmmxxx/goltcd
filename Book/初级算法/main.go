@@ -3,5 +3,10 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(maxProfit([]int{1, 2, 3, 4, 5}))
+
+	array := []int{1, 2, 3, 4, 5, 6, 7}
+
+	rotate(array, 4)
+
+	fmt.Println(array)
 }

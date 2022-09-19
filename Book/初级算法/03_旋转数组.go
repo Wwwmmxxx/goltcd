@@ -34,6 +34,32 @@ package main
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 */
 
-func rotate(nums []int, k int) {
+func rotate1(nums []int, k int) {
 
+	length := len(nums)
+
+	tempNums := make([]int, len(nums))
+
+	copy(tempNums, nums)
+
+	for i := 0; i < len(nums); i++ {
+		nums[(i+k-1)%length] = tempNums[i]
+	}
+
+}
+
+/**
+数组反转做法
+*/
+func reverse(a []int) {
+	for i, n := 0, len(a); i < n/2; i++ {
+		a[i], a[n-1-i] = a[n-1-i], a[i]
+	}
+}
+
+func rotate(nums []int, k int) {
+	k %= len(nums)
+	reverse(nums)
+	reverse(nums[:k])
+	reverse(nums[k:])
 }
