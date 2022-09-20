@@ -4,9 +4,7 @@ import "fmt"
 
 func main() {
 
-	array := []int{1, 2, 3, 4, 5, 6, 7}
+	array := []int{2, 2, 1}
 
-	rotate(array, 4)
-
-	fmt.Println(array)
+	fmt.Println(singleNumber(array))
 }
