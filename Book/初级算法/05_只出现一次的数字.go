@@ -17,6 +17,10 @@ import "sort"
 	输入: [4,1,2,1,2]
 	输出: 4
 
+作者：力扣 (LeetCode)
+链接：https://leetcode.cn/leetbook/read/top-interview-questions-easy/x2skh7/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 */
 
 func singleNumber1(nums []int) int {

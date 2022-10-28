@@ -1,5 +1,7 @@
 package main
 
+import "sort"
+
 /**
 
 给你两个整数数组nums1和nums2, 请你以数组形式返回两数组的交集.
@@ -22,9 +24,32 @@ package main
 	2. 如果nums1的大小比nums2小, 哪种方法更优？
 	3. 如果nums2的元素存储在磁盘上，内存是有限的，并且你不能一次加载所有的元素到内存中，你该怎么办？
 
+作者：力扣 (LeetCode)
+链接：https://leetcode.cn/leetbook/read/top-interview-questions-easy/x2skh7/
+来源：力扣（LeetCode）
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 */
 
-func intersect(nums1 []int, nums2 []int) []int {
+func intersect(nums1 []int, nums2 []int) (output []int) {
 
-	return []int{}
+	sort.Ints(nums1)
+	sort.Ints(nums2)
+
+	i, j := 0, 0
+
+	for i < len(nums1) && j < len(nums2) {
+
+		if nums1[i] < nums2[j] {
+			i++
+		} else if nums1[i] > nums2[j] {
+			j++
+		} else {
+			output = append(output, nums1[i])
+			i++
+			j++
+		}
+
+	}
+
+	return
 }
