@@ -32,5 +32,30 @@ package main
 
 func plusOne(digits []int) (output []int) {
 
+	add := false
+
+	for i := len(digits); i > 0; i-- {
+
+		num := digits[i-1]
+
+		if add || len(digits) == i {
+			num = num + 1
+		}
+
+		if num > 9 {
+			add = true
+		} else {
+			add = false
+		}
+
+		digits[i-1] = num % 10
+	}
+
+	if add {
+		output = append([]int{1}, digits...)
+	} else {
+		output = digits
+	}
+
 	return
 }
