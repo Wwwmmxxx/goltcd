@@ -24,6 +24,29 @@ package main
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 */
 
-func moveZeroes(nums []int) {
+func moveZeroes1(nums []int) {
 
+	for i := 0; i < len(nums); i++ {
+
+		// 需要往后找
+		if nums[i] == 0 {
+			for j := i; j < len(nums); j++ {
+				if nums[j] != 0 {
+					nums[j], nums[i] = nums[i], nums[j]
+					break
+				}
+			}
+		}
+	}
+}
+
+func moveZeroes(nums []int) {
+	left, right, n := 0, 0, len(nums)
+	for right < n {
+		if nums[right] != 0 {
+			nums[left], nums[right] = nums[right], nums[left]
+			left++
+		}
+		right++
+	}
 }
