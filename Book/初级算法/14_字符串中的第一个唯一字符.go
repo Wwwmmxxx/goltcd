@@ -22,5 +22,41 @@ package main
 */
 
 func firstUniqChar(s string) int {
-	return 0
+	cnt := [26]int{}
+	for _, ch := range s {
+		cnt[ch-'a']++
+	}
+	for i, ch := range s {
+		if cnt[ch-'a'] == 1 {
+			return i
+		}
+	}
+	return -1
+}
+
+func firstUniqChar1(s string) int {
+
+	var (
+		m = make(map[rune][]int, len(s))
+	)
+
+	for i, v := range s {
+
+		value, isExist := m[v]
+
+		if !isExist {
+			m[v] = []int{i}
+		} else {
+			m[v] = append(value, i)
+		}
+
+	}
+
+	for _, v := range s {
+		if len(m[v]) == 1 {
+			return m[v][0]
+		}
+	}
+
+	return -1
 }
