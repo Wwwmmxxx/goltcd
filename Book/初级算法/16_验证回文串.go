@@ -1,5 +1,9 @@
 package main
 
+import (
+	"strings"
+)
+
 /**
 
 如果在将所有大写字符转换为小写字符、并移除所有非字母数字字符之后，短语正着读和反着读都一样。则可以认为该短语是一个 回文串 。
@@ -31,8 +35,39 @@ package main
 链接：https://leetcode.cn/leetbook/read/top-interview-questions-easy/xne8id/
 来源：力扣（LeetCode）
 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+
 */
 
 func isPalindrome(s string) bool {
-	return false
+
+	s1 := strings.ToUpper(s)
+	left, right := 0, len(s1)-1
+
+	for left < right {
+
+		// if !((s1[left] <= 'Z' && s1[left] >= 'A') || (s1[left] >= '0' || s1[left] <= '9')) {
+		if !isValid(s[left]) {
+			left++
+			continue
+		}
+
+		// if !((s1[right] <= 'Z' && s1[right] >= 'A') || (s1[right] >= '0' || s1[right] <= '9')) {
+		if !isValid(s[right]) {
+			right--
+			continue
+		}
+
+		if s1[right] != s1[left] {
+			return false
+		}
+
+		right--
+		left++
+	}
+
+	return true
+}
+
+func isValid(c byte) bool {
+	return (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')
 }
