@@ -45,6 +45,7 @@ func isPalindrome(s string) bool {
 
 	for left < right {
 
+		// 注意: 这里不能直接使用s1[left], 可能是转换为了rune类型, 导致最终比较时无法得到正确结果
 		// if !((s1[left] <= 'Z' && s1[left] >= 'A') || (s1[left] >= '0' || s1[left] <= '9')) {
 		if !isValid(s[left]) {
 			left++
