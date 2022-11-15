@@ -24,7 +24,47 @@ package main
 
 */
 
-func isAnagram(s string, t string) bool {
+func isAnagram(s, t string) bool {
+	if len(s) != len(t) {
+		return false
+	}
+	cnt := map[rune]int{}
+	for _, ch := range s {
+		cnt[ch]++
+	}
+	for _, ch := range t {
+		cnt[ch]--
+		if cnt[ch] < 0 {
+			return false
+		}
+	}
+	return true
+}
 
-	return false
+func isAnagram1(s string, t string) bool {
+
+	var (
+		s1 = make(map[rune]int, len(s))
+		t1 = make(map[rune]int, len(t))
+	)
+
+	for _, v := range s {
+		s1[v]++
+	}
+
+	for _, v := range t {
+		t1[v]++
+	}
+
+	if len(s1) != len(t1) {
+		return false
+	}
+
+	for key, value := range s1 {
+		if t1[key] != value {
+			return false
+		}
+	}
+
+	return true
 }
