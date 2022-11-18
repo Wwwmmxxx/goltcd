@@ -1,6 +1,12 @@
 package main
 
-import "strconv"
+import (
+	"fmt"
+	"math"
+	"regexp"
+	"strconv"
+	"strings"
+)
 
 /**
 
@@ -13,14 +19,13 @@ import "strconv"
 读入下一个字符，直到到达下一个非数字字符或到达输入的结尾。字符串的其余部分将被忽略。
 将前面步骤读入的这些数字转换为整数（即，"123" -> 123， "0032" -> 32）。
 如果没有读入数字，则整数为 0 。必要时更改符号（从步骤 2 开始）。
-如果整数数超过 32 位有符号整数范围 [−231,  231 − 1] ，需要截断这个整数，使其保持在这个范围内。
-具体来说，小于 −231 的整数应该被固定为 −231 ，大于 231 − 1 的整数应该被固定为 231 − 1 。
+如果整数数超过 32 位有符号整数范围 [−2^31,  2^31 − 1] ，需要截断这个整数，使其保持在这个范围内。
+具体来说，小于 −2^31 的整数应该被固定为 −2^31 ，大于 2^31 − 1 的整数应该被固定为 2^31 − 1 。
 返回整数作为最终结果。
 
 注意：
 	本题中的空白字符只包括空格字符 ' ' 。
 	除前导空格或数字后的其余字符串外，请勿忽略 任何其他字符。
-
 
 示例 1：
 	输入：s = "42"
@@ -69,9 +74,82 @@ import "strconv"
 
 */
 
+func myAtoi1(s string) int {
+
+	var (
+		stringBuilder strings.Builder
+		left          = 0
+		trimS         = strings.TrimSpace(s)
+	)
+
+	for left < len(trimS) {
+
+		b := byte(trimS[left])
+
+		if left == 0 && (b == '-' || b == '+') {
+			stringBuilder.WriteByte(b)
+			left++
+			continue
+		}
+
+		matched, err := regexp.Match(`^[0-9]*$`, []byte{b})
+		if err != nil {
+			fmt.Printf("err: %v\n", err)
+		}
+
+		if matched {
+			stringBuilder.WriteByte(b)
+		} else {
+			break
+		}
+
+		left++
+	}
+
+	result, _ := strconv.Atoi(stringBuilder.String())
+
+	switch {
+	case result < math.MinInt32:
+		result = math.MinInt32
+	case result > math.MaxInt32:
+		result = math.MaxInt32
+	}
+
+	return result
+}
+
 func myAtoi(s string) int {
+	result, sign, i, n := 0, 1, 0, len(s)
+	const MinInt32, MaxInt32 = -1 << 31, 1<<31 - 1
 
-	i, _ := strconv.Atoi(s)
+	for ; i < n && s[i] == ' '; i++ {
+	}
+	// 如果空格的数据 >= 字符串的长度, 说明整个字符串都是空串, 返回0
+	if i >= n {
+		return 0
+	}
 
-	return i
+	switch s[i] {
+	case '+':
+		i++
+	case '-':
+		i++
+		sign = -1
+	}
+
+	for ; i < n; i++ {
+		if s[i] < 48 || s[i] > 57 {
+			break
+		}
+
+		result = result*10 + int(s[i]-'0')
+		if sign*result < MinInt32 {
+			return MinInt32
+		}
+		if sign*result > MaxInt32 {
+			return MaxInt32
+		}
+	}
+
+	return sign * result
 }
