@@ -1,6 +1,9 @@
 package main
 
-import "strings"
+import (
+	"strconv"
+	"strings"
+)
 
 /**
 
@@ -42,19 +45,58 @@ import "strings"
 
 */
 
-func countAndSay(n int) string {
+func countAndSay1(n int) string {
+	if n == 1 {
+		return "1"
+	}
+	s := countAndSay1(n - 1)
+
+	i, res := 0, ""
+	length := len(s)
+	for j := 0; j < length; j++ {
+		if s[j] != s[i] {
+			res += strconv.Itoa(j-i) + string(s[i])
+			i = j
+		}
+	}
+	res += strconv.Itoa(length-i) + string(s[i])
+
+	return res
+}
+
+func countAndSay2(n int) string {
 
 	if n == 1 {
 		return "1"
 	}
 
-	str := countAndSay(n - 1)
+	str := countAndSay2(n - 1)
 
-	var strBuilder strings.Builder
+	var (
+		strBuilder strings.Builder
+		bytes      = make([]byte, 0, 0)
+	)
 
 	for index := range str {
 
+		if len(bytes) == 0 {
+			bytes = append(bytes, str[index])
+			continue
+		}
+
+		if bytes[0] != byte(str[index]) {
+
+			strBuilder.WriteString(strconv.Itoa(len(bytes)))
+			strBuilder.WriteByte(bytes[0])
+			bytes = make([]byte, 0, 9)
+		}
+
+		bytes = append(bytes, str[index])
+
 	}
+
+	strBuilder.WriteString(strconv.Itoa(len(bytes)))
+	strBuilder.WriteByte(bytes[0])
 
 	return strBuilder.String()
 }

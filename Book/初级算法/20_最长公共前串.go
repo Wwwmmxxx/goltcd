@@ -29,9 +29,7 @@ func longestCommonPrefix(strs []string) string {
 
 	loopTimes := getShortestString(strs)
 
-	for index := 0; index < loopTimes; index++ {
-
-		b := strs[index][ptrs[index]]
+	for j := 0; j < len(ptrs); j++ {
 
 	}
 
