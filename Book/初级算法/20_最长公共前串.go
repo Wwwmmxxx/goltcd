@@ -1,9 +1,9 @@
-package main
+package book01
 
 /**
 
 编写一个函数来查找字符串数组中的最长公共前缀。
-如果不存在公共前缀，返回空字符串 ""。
+如果不存在公共前缀，返回空字符串""。
 
 示例 1：
 	输入：strs = ["flower","flow","flight"]
@@ -23,28 +23,8 @@ package main
 
 func longestCommonPrefix(strs []string) string {
 
-	var (
-		ptrs = make([]int, 0, len(strs))
-	)
-
-	loopTimes := getShortestString(strs)
-
-	for j := 0; j < len(ptrs); j++ {
-
+	for _, str := range strs {
+		if
 	}
 
-	return ""
-}
-
-func getShortestString(strs []string) int {
-
-	result := len(strs[0])
-
-	for _, v := range strs {
-		if len(v) < result {
-			result = len(v)
-		}
-	}
-
-	return result
 }
