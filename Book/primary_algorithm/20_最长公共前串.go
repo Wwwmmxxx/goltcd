@@ -23,8 +23,8 @@ package book01
 
 func longestCommonPrefix(strs []string) string {
 
-	for _, str := range strs {
-		if
-	}
-
+	//for _, str := range strs {
+	//	if
+	//}
+	return ""
 }
