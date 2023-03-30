@@ -38,7 +38,17 @@ package goLeetCode
 
 // @lc code=start
 func findMin(nums []int) int {
-	return -1
+
+	low, high := 0, len(nums)-1
+	for low < high {
+		pivot := low + (high-low)/2
+		if nums[pivot] < nums[high] {
+			high = pivot
+		} else {
+			low = pivot + 1
+		}
+	}
+	return nums[low]
 }
 
 // @lc code=end
