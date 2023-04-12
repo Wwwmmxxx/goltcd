@@ -83,28 +83,3 @@ func merge(intervals [][]int) [][]int {
 }
 
 // @lc code=end
-
-// func merge1(intervals [][]int) [][]int {
-// 	//先从小到大排序
-// 	sort.Slice(intervals, func(i, j int) bool {
-// 		return intervals[i][0] < intervals[j][0]
-// 	})
-
-// 	max := func(i int, j int) int {
-// 		if i > j {
-// 			return i
-// 		}
-// 		return j
-// 	}
-
-// 	var res [][]int
-// 	for _, interval := range intervals {
-// 		var length = len(res)
-// 		if length == 0 || res[length-1][1] < interval[0] {
-// 			res = append(res, interval)
-// 		} else {
-// 			res[length-1][1] = max(res[length-1][1], interval[1])
-// 		}
-// 	}
-// 	return res
-// }
