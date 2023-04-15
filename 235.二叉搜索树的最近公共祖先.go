@@ -76,11 +76,7 @@ func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
 	f = func(root *TreeNode) *TreeNode {
 
 		switch {
-		case small.Val == root.Val:
-			return small
-		case big.Val == root.Val:
-			return big
-		case small.Val < root.Val && big.Val > root.Val:
+		case small.Val == root.Val, big.Val == root.Val, small.Val < root.Val && big.Val > root.Val:
 			return root
 		case small.Val < root.Val && big.Val < root.Val:
 			return f(root.Left)
