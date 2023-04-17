@@ -60,7 +60,7 @@ package goLeetCode
  * }
  */
 
-func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
+func lowestCommonAncestor1(root, p, q *TreeNode) *TreeNode {
 
 	var big, small *TreeNode
 	if p.Val > q.Val {
