@@ -1,18 +1,47 @@
-# Binaries for programs and plugins
+### Intellij IDEA ###
+.idea/*
+.idea/codeStyles
+.idea/runConfigurations
+.idea/watcherTasks.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/*.iml
+cmake-build-*/
+out/
+.idea_modules/
+*.iws
+*.iml
+
+### VisualStudioCode ###
+.vscode/*
+.vscode/settings.json.default
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
+.vscode/*.code-snippets
+.history/
+.history
+.ionide
+*.code-workspace
+
+### Go ###
+build/
+secrets/
+tmp/
+vendor/
 *.exe
 *.exe~
 *.dll
 *.so
 *.dylib
-
-# Test binary, built with `go test -c`
 *.test
-
-# Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+*.pem
+*.pub
+.env
+go.work
+go.work.sum
+config-local.toml
 
-# Dependency directories (remove the comment below to include it)
-# vendor/
-.idea/*
-.vscode/*
-*.code-workspace
+### Mac ###
+.DS_Store
