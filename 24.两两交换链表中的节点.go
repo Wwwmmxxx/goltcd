@@ -1,4 +1,4 @@
-package goLeetCode
+package goltcd
 
 /*
  * @lc app=leetcode.cn id=24 lang=golang
