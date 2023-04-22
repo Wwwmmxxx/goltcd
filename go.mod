@@ -1,3 +1,3 @@
-module github.com/Wwwmmmxxx/leetcode
+module github.com/Wwwmmmxxx/goltcd
 
 go 1.20

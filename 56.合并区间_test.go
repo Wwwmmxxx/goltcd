@@ -1,4 +1,4 @@
-package goLeetCode
+package goltcd
 
 import (
 	"reflect"
@@ -57,7 +57,7 @@ func Test_merge(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := merge(tt.args.intervals); !reflect.DeepEqual(got, tt.want) {
+			if got := merge1(tt.args.intervals); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("merge() = %v, want %v", got, tt.want)
 			}
 		})

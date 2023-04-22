@@ -1,4 +1,4 @@
-package goLeetCode
+package goltcd
 
 import "strconv"
 

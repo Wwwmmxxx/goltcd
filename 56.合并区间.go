@@ -1,4 +1,4 @@
-package goLeetCode
+package goltcd
 
 import "sort"
 
@@ -50,7 +50,7 @@ import "sort"
  */
 
 // @lc code=start
-func merge(intervals [][]int) [][]int {
+func merge1(intervals [][]int) [][]int {
 
 	sort.Slice(intervals, func(i, j int) bool {
 		return intervals[i][0] < intervals[j][0]
