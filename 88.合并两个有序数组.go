@@ -72,7 +72,49 @@ package goltcd
 
 // @lc code=start
 func merge(nums1 []int, m int, nums2 []int, n int) {
-	return
+	if m == 0 && n == 1 {
+		nums1[0] = nums2[0]
+		return
+	}
+
+	moveForward := func(nums []int, index int) []int {
+		for i := len(nums) - 2; i >= index; i-- {
+			nums[i+1] = nums[i]
+		}
+		return nums
+	}
+	n1Index, n2Index := 0, 0
+	for ; n1Index < len(nums1); n1Index++ {
+		// 如果最后是nums2先遍历完了, 则直接返回, 因为此时num1和num2已经成功合并
+		if n2Index == len(nums2) {
+			return
+		}
+
+		if nums2[n2Index] < nums1[n1Index] {
+			moveForward(nums1, n1Index)
+			nums1[n1Index] = nums2[n2Index]
+			n2Index++
+		}
+	}
+
+	// 可能会有第二种情况, 就是nums2没有遍历完, 如果没有遍历完, 就手动附上
+	for i, j := len(nums2)-1, len(nums1)-1; i >= n2Index; {
+		nums1[j] = nums2[i]
+		i--
+		j--
+	}
+}
+
+func merge2(nums1 []int, m int, nums2 []int, n int) {
+	for k := m + n - 1; k >= m; k-- {
+		if m > 0 && nums1[m-1] > nums2[n-1] {
+			nums1[k] = nums1[m-1]
+			m--
+		} else {
+			nums1[k] = nums2[n-1]
+			n--
+		}
+	}
 }
 
 // @lc code=end

@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func Test_merge(t *testing.T) {
+func Test_merge1(t *testing.T) {
 	type args struct {
 		intervals [][]int
 	}
