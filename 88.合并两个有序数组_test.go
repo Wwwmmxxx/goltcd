@@ -2,7 +2,7 @@ package goltcd
 
 import "testing"
 
-func Test_merge(t *testing.T) {
+func Test_merge1(t *testing.T) {
 	type args struct {
 		nums1 []int
 		m     int
@@ -25,7 +25,7 @@ func Test_merge(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			merge(tt.args.nums1, tt.args.m, tt.args.nums2, tt.args.n)
+			merge1(tt.args.nums1, tt.args.m, tt.args.nums2, tt.args.n)
 		})
 	}
 }

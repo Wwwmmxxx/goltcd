@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func Test_merge1(t *testing.T) {
+func Test_merge(t *testing.T) {
 	type args struct {
 		intervals [][]int
 	}
@@ -57,7 +57,7 @@ func Test_merge1(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := merge1(tt.args.intervals); !reflect.DeepEqual(got, tt.want) {
+			if got := merge(tt.args.intervals); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("merge() = %v, want %v", got, tt.want)
 			}
 		})

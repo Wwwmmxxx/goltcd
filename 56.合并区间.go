@@ -50,7 +50,7 @@ import "sort"
  */
 
 // @lc code=start
-func merge1(intervals [][]int) [][]int {
+func merge(intervals [][]int) [][]int {
 
 	sort.Slice(intervals, func(i, j int) bool {
 		return intervals[i][0] < intervals[j][0]
