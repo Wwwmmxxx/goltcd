@@ -65,7 +65,7 @@ func findPeakElement(nums []int) int {
 		return 0
 	}
 
-	for index, _ := range nums {
+	for index := range nums {
 
 		if index == 0 {
 			if nums[index] > nums[index+1] {
