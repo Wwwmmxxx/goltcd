@@ -64,7 +64,7 @@ package goltcd
  *     Right *TreeNode
  * }
  */
-func inorderTraversal(root *TreeNode) []int {
+func inorderTraversal1(root *TreeNode) []int {
 	res := make([]int, 0)
 
 	var f func(node *TreeNode)
@@ -80,6 +80,21 @@ func inorderTraversal(root *TreeNode) []int {
 	f(root)
 
 	return res
+}
+
+func inorderTraversal(root *TreeNode) (res []int) {
+	stack := []*TreeNode{}
+	for root != nil || len(stack) > 0 {
+		for root != nil {
+			stack = append(stack, root)
+			root = root.Left
+		}
+		root = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		res = append(res, root.Val)
+		root = root.Right
+	}
+	return
 }
 
 // @lc code=end
