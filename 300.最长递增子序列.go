@@ -1,7 +1,5 @@
 package goltcd
 
-import "math"
-
 /*
  * @lc app=leetcode.cn id=300 lang=golang
  *
@@ -65,36 +63,60 @@ import "math"
  */
 
 // @lc code=start
-func lengthOfLIS(nums []int) int {
+// func lengthOfLIS(nums []int) int {
+// 	var (
+// 		f func(int) int
+// 		m = make(map[int]int)
+// 	)
+// 	f = func(i int) int {
+// 		if i == len(nums)-1 {
+// 			return 1
+// 		}
+
+// 		if v, isExist := m[i]; isExist {
+// 			return v
+// 		}
+
+// 		length := 1
+// 		for j := i + 1; j < len(nums); j++ {
+// 			if nums[j] > nums[i] {
+// 				length = int(math.Max(float64(length), float64(f(j)+1)))
+// 			}
+// 		}
+// 		m[i] = length
+// 		return length
+// 	}
+
+// 	max := 1
+// 	for i := range nums {
+// 		max = int(math.Max(float64(f(i)), float64(max)))
+// 	}
+
+// 	return max
+// }
+
+func lengthOfLIS(nums []int) (ans int) {
+
 	var (
-		f func(int) int
-		m = make(map[int]int)
+		f   = make([]int, len(nums))
+		max = func(a, b int) int {
+			if a < b {
+				return b
+			}
+			return a
+		}
 	)
-	f = func(i int) int {
-		if i == len(nums)-1 {
-			return 1
-		}
 
-		if v, isExist := m[i]; isExist {
-			return v
-		}
-
-		length := 1
-		for j := i + 1; j < len(nums); j++ {
-			if nums[j] > nums[i] {
-				length = int(math.Max(float64(length), float64(f(j)+1)))
+	for i, x := range nums {
+		for j, y := range nums[:i] {
+			if y < x {
+				f[i] = max(f[i], f[j])
 			}
 		}
-		m[i] = length
-		return length
+		f[i]++
+		ans = max(ans, f[i])
 	}
-
-	max := 1
-	for i := range nums {
-		max = int(math.Max(float64(f(i)), float64(max)))
-	}
-
-	return max
+	return
 }
 
 // @lc code=end
