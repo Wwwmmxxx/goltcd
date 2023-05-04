@@ -74,6 +74,7 @@ package goltcd
  */
 
 // @lc code=start
+// f(i) = f(i-1) + f(i-2)
 func numDecodings(s string) int {
 	n := len(s)
 	f := make([]int, n+1)
