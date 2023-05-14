@@ -51,7 +51,19 @@ package goltcd
 
 // @lc code=start
 func rotate(matrix [][]int) {
+	// 复制
+	c := make([][]int, 0, len(matrix))
+	for _, rows := range matrix {
+		newRow := make([]int, 0, len(rows))
+		newRow = append(newRow, rows...)
+		c = append(c, newRow)
+	}
 
+	for rowNum, row := range c {
+		for columnIndex, value := range row {
+			matrix[columnIndex][len(c[0])-1-rowNum] = value
+		}
+	}
 }
 
 // @lc code=end
