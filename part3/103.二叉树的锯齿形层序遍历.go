@@ -109,4 +109,32 @@ func zigzagLevelOrder(root *TreeNode) [][]int {
 	return res
 }
 
+// func zigzagLevelOrder(root *TreeNode) [][]int {
+//     res := [][]int{}
+
+//     var dfs func(*TreeNode, int)
+
+//     dfs = func(node *TreeNode, depth int){
+//         if node ==nil{
+//             return
+//         }
+//         if len(res)<=depth{
+//             res = append(res, []int{})
+//         }
+
+//         if depth&1==0{
+//             res[depth] = append(res[depth], node.Val)
+//         } else{
+//             res[depth] = append([]int{node.Val}, res[depth]...)
+//         }
+
+//         dfs(node.Left, depth+1)
+//         dfs(node.Right, depth+1)
+
+//     }
+
+//     dfs(root, 0)
+//     return res
+// }
+
 // @lc code=end

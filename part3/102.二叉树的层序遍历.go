@@ -102,4 +102,34 @@ func levelOrder(root *TreeNode) [][]int {
 	return result
 }
 
+func levelOrder2(root *TreeNode) [][]int {
+
+	if root == nil {
+		return nil
+	}
+
+	result := [][]int{}
+
+	var f func(dept int, node *TreeNode)
+
+	f = func(dept int, node *TreeNode) {
+		if node == nil {
+			return
+		}
+
+		if len(result) <= dept {
+			result = append(result, []int{})
+		}
+
+		result[dept] = append(result[dept], node.Val)
+
+		f(dept+1, node.Left)
+		f(dept+1, node.Right)
+	}
+
+	f(0, root)
+
+	return result
+}
+
 // @lc code=end
