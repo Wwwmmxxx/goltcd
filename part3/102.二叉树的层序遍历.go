@@ -80,7 +80,6 @@ func levelOrder(root *TreeNode) [][]int {
 		var tmpNodes = make([]*TreeNode, 0)
 		var curDeptValue = make([]int, 0, len(nodes))
 		for i := 0; i < len(nodes); i++ {
-
 			if nodes[i].Left != nil {
 				curDeptValue = append(curDeptValue, nodes[i].Left.Val)
 				tmpNodes = append(tmpNodes, nodes[i].Left)
@@ -89,7 +88,6 @@ func levelOrder(root *TreeNode) [][]int {
 				curDeptValue = append(curDeptValue, nodes[i].Right.Val)
 				tmpNodes = append(tmpNodes, nodes[i].Right)
 			}
-
 		}
 
 		if len(curDeptValue) > 0 {
