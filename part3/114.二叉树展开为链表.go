@@ -8,11 +8,11 @@ package goltcd
  * https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/description/
  *
  * algorithms
- * Medium (73.02%)
- * Likes:    1454
+ * Medium (72.98%)
+ * Likes:    1464
  * Dislikes: 0
- * Total Accepted:    352.5K
- * Total Submissions: 483K
+ * Total Accepted:    356.7K
+ * Total Submissions: 488.7K
  * Testcase Example:  '[1,2,5,3,4,null,6]'
  *
  * 给你二叉树的根结点 root ，请你将它展开为一个单链表：
@@ -70,8 +70,31 @@ package goltcd
  * }
  */
 func flatten(root *TreeNode) {
-	
+	var f func(node *TreeNode)
+	f = func(node *TreeNode) {
+		if node == nil {
+			return
+		}
+		f(node.Left)
+		f(node.Right)
 
+		// 拼接
+		// 找到左子树的最右侧节点
+		var leftRightest *TreeNode
+		if node.Left != nil {
+			leftRightest = node.Left
+			for leftRightest.Right != nil {
+				leftRightest = leftRightest.Right
+			}
+		}
+
+		if leftRightest != nil {
+			leftRightest.Right = node.Right
+			node.Right = node.Left
+			node.Left = nil
+		}
+	}
+	f(root)
 }
 
 // @lc code=end
