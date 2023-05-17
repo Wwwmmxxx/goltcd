@@ -112,4 +112,23 @@ func connect(root *Node) *Node {
 	return root
 }
 
+func connect1(root *Node) *Node {
+	if root == nil {
+		return root
+	}
+	return modify(root)
+}
+func modify(root *Node) *Node {
+	if root.Left == nil && root.Right == nil {
+		return root
+	}
+	root.Left.Next = root.Right
+	if root.Next != nil {
+		root.Right.Next = root.Next.Left
+	}
+	modify(root.Left)
+	modify(root.Right)
+	return root
+}
+
 // @lc code=end
