@@ -82,7 +82,7 @@ package goltcd
  * }
  */
 
-func connect(root *Node) *Node {
+func connect1(root *Node) *Node {
 	if root == nil {
 		return root
 	}
@@ -112,7 +112,7 @@ func connect(root *Node) *Node {
 	return root
 }
 
-func connect1(root *Node) *Node {
+func connect2(root *Node) *Node {
 	if root == nil {
 		return root
 	}
