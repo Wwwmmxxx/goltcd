@@ -1,5 +1,11 @@
 package goltcd
 
+import (
+	"fmt"
+	"regexp"
+	"strings"
+)
+
 /*
  * @lc app=leetcode.cn id=151 lang=golang
  *
@@ -68,9 +74,42 @@ package goltcd
  */
 
 // @lc code=start
-func reverseWords(s string) string {
+func reverseWords1(s string) string {
+	fs := strings.Fields(s)
+	for i := 0; i < len(fs)/2; i++ {
+		fs[i], fs[len(fs)-1-i] = fs[len(fs)-1-i], fs[i]
+	}
+	return strings.Join(fs, " ")
+}
 
-	return ""
+func reverseWords(s string) string {
+	r := regexp.MustCompile(`\s+`)
+	s = r.ReplaceAllString(strings.TrimSpace(s), " ")
+	bs := []byte(s)
+
+	f := func(bs *[]byte, left, right int) {
+		for left < right {
+			(*bs)[left], (*bs)[right] = (*bs)[right], (*bs)[left]
+			left++
+			right--
+		}
+	}
+
+	f(&bs, 0, len(bs)-1)
+	fmt.Println(string(bs))
+	for i := 0; i < len(bs); i++ {
+		j := i
+		for ; j < len(bs); j++ {
+			if bs[j] == ' ' {
+				break
+			}
+		}
+		f(&bs, i, j-1)
+		fmt.Println(string(bs))
+		i = j
+	}
+
+	return string(bs)
 }
 
 // @lc code=end

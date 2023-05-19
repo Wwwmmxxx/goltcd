@@ -59,6 +59,7 @@ import (
 func maxProfit(prices []int) int {
 	maxProfit := 0
 	rightMax := 0
+	// 有点滑动窗口的意思
 	for i := len(prices) - 1; i >= 0; i-- {
 		rightMax = int(math.Max(float64(rightMax), float64(prices[i])))
 		maxProfit = int(math.Max(float64(maxProfit), float64(rightMax-prices[i])))
